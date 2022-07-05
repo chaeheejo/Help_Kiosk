@@ -4,6 +4,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,14 +12,14 @@ import android.view.ViewGroup;
 public class SplashFragment extends Fragment {
 
     public SplashFragment() {
-        // Required empty public constructor
-    }
-
-    public static SplashFragment newInstance(String param1, String param2) {
-        SplashFragment fragment = new SplashFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //splash화면에서 login화면으로 넘어가는 navigation효과
+                NavHostFragment.findNavController(SplashFragment.this).navigate(R.id.action_splashFragment_to_homeFragment);
+            } //3초 후에
+        },3000);
     }
 
     @Override
