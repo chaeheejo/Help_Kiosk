@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "693740692283",
+    "project_id": "help-kiosk",
+    "storage_bucket": "help-kiosk.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:693740692283:android:599126060713e5b298cd1e",
+        "android_client_info": {
+          "package_name": "com.help_kiosk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "693740692283-m50t24rrnmi96opm4aquf07ti54h1hgt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBv77r2Bm1cGi24K3imWyRGb2bIQ_Atn_4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "693740692283-m50t24rrnmi96opm4aquf07ti54h1hgt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
