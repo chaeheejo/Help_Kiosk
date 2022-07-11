@@ -48,6 +48,10 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         bt_mcdonalds = view.findViewById(R.id.home_bt_mcdonalds);
         bt_bugerking = view.findViewById(R.id.home_bt_bugerking);
+        bt_cgv = view.findViewById(R.id.home_bt_cgv);
+        bt_gongcha =view.findViewById(R.id.home_bt_gongcha);
+        bt_way = view.findViewById(R.id.home_bt_way);
+        bt_simulation = view.findViewById(R.id.home_bt_simulation);
 
         bt_mcdonalds.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +64,34 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_homeFragment_to_bugerkingFragment);
+            }
+        });
+
+        bt_cgv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_homeFragment_to_cgvFragment);
+            }
+        });
+
+        bt_gongcha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_homeFragment_to_gongchaFragment);
+            }
+        });
+
+        bt_way.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_homeFragment_to_wayFragment);
+            }
+        });
+
+        bt_simulation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_homeFragment_to_simulationFragment);
             }
         });
     }
