@@ -20,6 +20,22 @@
         android:name="com.help_kiosk.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_mcdonaldsFragment"
+            app:destination="@id/mcdonaldsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_bugerkingFragment"
+            app:destination="@id/bugerkingFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/mcdonaldsFragment"
+        android:name="com.help_kiosk.McdonaldsFragment"
+        android:label="fragment_mcdonalds"
+        tools:layout="@layout/fragment_mcdonalds" />
+    <fragment
+        android:id="@+id/bugerkingFragment"
+        android:name="com.help_kiosk.BugerkingFragment"
+        android:label="fragment_bugerking"
+        tools:layout="@layout/fragment_bugerking" />
 
 </navigation>
