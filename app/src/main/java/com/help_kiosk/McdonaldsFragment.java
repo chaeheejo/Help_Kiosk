@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+
 public class McdonaldsFragment extends Fragment {
     private WayViewModel wayViewModel;
     private ImageView imageView2;
@@ -43,5 +45,10 @@ public class McdonaldsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @NonNull Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         imageView2 = view.findViewById(R.id.imageView2);
+        wayViewModel.getPhoto();
+
+        Glide.with(this)
+                .load(wayViewModel.getPhoto())
+                .into(imageView2);
     }
 }
