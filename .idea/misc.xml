@@ -8,10 +8,11 @@
         <entry key="..\:/dawn_workspace/Help_Kiosk/app/src/main/res/layout/fragment_splash.xml" value="0.22826086956521738" />
         <entry key="..\:/dawn_workspace/Help_Kiosk2/app/src/main/res/layout/fragment_home.xml" value="0.22780797101449277" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.30932971014492755" />
+        <entry key="app/src/main/res/layout/fragment_mcdonalds.xml" value="0.3880208333333333" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8 (2)" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8 (2)" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

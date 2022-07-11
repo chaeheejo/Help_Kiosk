@@ -11,30 +11,30 @@
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/home_bt_mcdonalds"
         android:layout_width="150dp"
         android:layout_height="70dp"
         android:layout_marginTop="150dp"
         android:layout_marginEnd="20dp"
         android:backgroundTint="#AFB2C6"
         android:text="맥도날드"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintEnd_toStartOf="@+id/home_bt_bugerking"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/home_bt_bugerking"
         android:layout_width="150dp"
         android:layout_height="70dp"
         android:layout_marginTop="150dp"
         android:backgroundTint="#AFB2C6"
         android:text="버거킹"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/button"
+        app:layout_constraintStart_toEndOf="@id/home_bt_mcdonalds"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/home_bt_cgv"
         android:layout_width="150dp"
         android:layout_height="70dp"
         android:layout_marginEnd="20dp"
@@ -42,12 +42,12 @@
         android:backgroundTint="#AFB2C6"
         android:text="CGV"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button4"
+        app:layout_constraintEnd_toStartOf="@+id/home_bt_gongcha"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/home_bt_mcdonalds" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/home_bt_gongcha"
         android:layout_width="150dp"
         android:layout_height="70dp"
         android:layout_marginBottom="300dp"
@@ -55,22 +55,22 @@
         android:text="공차"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button3"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintStart_toEndOf="@+id/home_bt_cgv"
+        app:layout_constraintTop_toBottomOf="@+id/home_bt_bugerking" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/home_bt_way"
         android:layout_width="100dp"
         android:layout_height="70dp"
         android:backgroundTint="#6A76CD"
         android:text="사용법"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button6"
+        app:layout_constraintEnd_toStartOf="@+id/home_bt_simulation"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button3" />
+        app:layout_constraintTop_toBottomOf="@id/home_bt_cgv" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/home_bt_simulation"
         android:layout_width="100dp"
         android:layout_height="70dp"
         android:layout_marginStart="15dp"
@@ -78,6 +78,6 @@
         android:text="모의 사용"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button5"
-        app:layout_constraintTop_toBottomOf="@id/button4" />
+        app:layout_constraintStart_toEndOf="@+id/home_bt_way"
+        app:layout_constraintTop_toBottomOf="@id/home_bt_gongcha" />
 </androidx.constraintlayout.widget.ConstraintLayout>
