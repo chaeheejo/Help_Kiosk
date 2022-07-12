@@ -1,9 +1,11 @@
 package com.help_kiosk;
 
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
@@ -12,10 +14,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.GlideBuilder;
+import com.google.android.gms.tasks.Task;
 
 public class McdonaldsFragment extends Fragment {
     private WayViewModel wayViewModel;
     private ImageView imageView2;
+
+    private Task<Uri> pathReference;
 
     public McdonaldsFragment() {
         // Required empty public constructor
@@ -45,10 +51,21 @@ public class McdonaldsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @NonNull Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         imageView2 = view.findViewById(R.id.imageView2);
-        wayViewModel.getPhoto();
 
-        Glide.with(this)
-                .load(wayViewModel.getPhoto())
-                .into(imageView2);
+        wayViewModel.getPhoto();
+//        pathReference = wayViewModel.getUri();
+
+        wayViewModel.uriLoaded().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean isLoaded) {
+                if(isLoaded){
+                    pathReference=wayViewModel.getUri();
+                    Glide.with(requireContext())
+                            .load(pathReference.getResult())
+                            .into(imageView2);
+                }
+            }
+        });
+
     }
 }
