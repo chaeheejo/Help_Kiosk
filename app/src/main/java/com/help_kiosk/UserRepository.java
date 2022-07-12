@@ -11,7 +11,8 @@ public class UserRepository {
         firebaseDataSource.getPhoto(callback::onComplete);
     }
 
-    public interface UserRepositoryCallback<T>{
+    public void setDataSource(FirebaseDataSource ds){this.firebaseDataSource = ds;}
+    public interface UserRepositoryCallback<Result>{
         void onComplete(Result result);
     }
 }
