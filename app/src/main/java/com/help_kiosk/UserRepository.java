@@ -7,6 +7,10 @@ public class UserRepository {
     }
     private FirebaseDataSource firebaseDataSource;
 
+    public void getPhoto(UserRepositoryCallback<Result> callback){
+        firebaseDataSource.getPhoto(callback::onComplete);
+    }
+
     public interface UserRepositoryCallback<T>{
         void onComplete(Result result);
     }
