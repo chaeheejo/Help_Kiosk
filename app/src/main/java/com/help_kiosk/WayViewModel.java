@@ -102,7 +102,7 @@ public class WayViewModel extends ViewModel {
         });
     }
 
-    public Task<Uri> getUri(){return pathReference;}
+    public Task<Uri> getReference(){return pathReference;}
 
     public LiveData<Boolean> uriLoaded(){return uriLoaded;}
 

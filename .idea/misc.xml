@@ -8,6 +8,10 @@
         <entry key="..\:/dawn_workspace/Help_Kiosk/app/src/main/res/layout/fragment_home.xml" value="0.109375" />
         <entry key="..\:/dawn_workspace/Help_Kiosk/app/src/main/res/layout/fragment_splash.xml" value="0.22826086956521738" />
         <entry key="..\:/dawn_workspace/Help_Kiosk2/app/src/main/res/layout/fragment_home.xml" value="0.22780797101449277" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2535" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2535" />
+        <entry key="app/src/main/res/drawable/selector_radio_button.xml" value="0.2535" />
+        <entry key="app/src/main/res/drawable/selector_radio_text.xml" value="0.1745" />
         <entry key="app/src/main/res/layout/fragment_cgv.xml" value="0.31197916666666664" />
         <entry key="app/src/main/res/layout/fragment_gongcha.xml" value="0.29791666666666666" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.30932971014492755" />

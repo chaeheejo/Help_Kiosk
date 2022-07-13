@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -19,6 +20,7 @@ public class HomeFragment extends Fragment {
     private Button bt_gongcha;
     private Button bt_way;
     private Button bt_simulation;
+    String selectedButton ="";
 
     public HomeFragment() {
 
@@ -56,28 +58,45 @@ public class HomeFragment extends Fragment {
         bt_mcdonalds.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_homeFragment_to_mcdonaldsFragment);
+                bt_mcdonalds.setSelected(!bt_mcdonalds.isSelected());
+
+                if(bt_mcdonalds.isSelected()){
+                    selectedButton = "mcdonals";
+                }
+                else{
+                    selectedButton = "";
+                }
             }
         });
 
         bt_bugerking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_homeFragment_to_bugerkingFragment);
+                bt_mcdonalds.setSelected(!bt_mcdonalds.isSelected());
+
+                bt_mcdonalds.setSelected(!bt_mcdonalds.isSelected());
+
+                if(bt_mcdonalds.isSelected()){
+                    selectedButton = "mcdonals";
+                }
+                else{
+                    selectedButton = "";
+                }
+
             }
         });
 
         bt_cgv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_homeFragment_to_cgvFragment);
+                bt_mcdonalds.setSelected(!bt_mcdonalds.isSelected());
             }
         });
 
         bt_gongcha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_homeFragment_to_gongchaFragment);
+                bt_mcdonalds.setSelected(!bt_mcdonalds.isSelected());
             }
         });
 

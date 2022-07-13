@@ -18,20 +18,18 @@ public class SplashFragment extends Fragment {
             public void run() {
                 //splash화면에서 login화면으로 넘어가는 navigation효과
                 NavHostFragment.findNavController(SplashFragment.this).navigate(R.id.action_splashFragment_to_homeFragment);
-            } //3초 후에
-        },3000);
+            } //3초 후에-시현 환경에서는 0.1초로 설정
+        },100);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_splash, container, false);
     }
 }
