@@ -21,44 +21,13 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_mcdonaldsFragment"
-            app:destination="@id/mcdonaldsFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_bugerkingFragment"
-            app:destination="@id/bugerkingFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_cgvFragment"
-            app:destination="@id/cgvFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_gongchaFragment"
-            app:destination="@id/gongchaFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_simulationFragment"
             app:destination="@id/simulationFragment" />
         <action
             android:id="@+id/action_homeFragment_to_wayFragment"
             app:destination="@id/wayFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/mcdonaldsFragment"
-        android:name="com.help_kiosk.WayFragment"
-        android:label="fragment_mcdonalds"
-        tools:layout="@layout/fragment_mcdonalds" />
-    <fragment
-        android:id="@+id/bugerkingFragment"
-        android:name="com.help_kiosk.BugerkingFragment"
-        android:label="fragment_bugerking"
-        tools:layout="@layout/fragment_bugerking" />
-    <fragment
-        android:id="@+id/cgvFragment"
-        android:name="com.help_kiosk.CgvFragment"
-        android:label="fragment_cgv"
-        tools:layout="@layout/fragment_cgv" />
-    <fragment
-        android:id="@+id/gongchaFragment"
-        android:name="com.help_kiosk.GongchaFragment"
-        android:label="fragment_gongcha"
-        tools:layout="@layout/fragment_gongcha" />
+
     <fragment
         android:id="@+id/simulationFragment"
         android:name="com.help_kiosk.SimulationFragment"
@@ -68,6 +37,11 @@
         android:id="@+id/wayFragment"
         android:name="com.help_kiosk.WayFragment"
         android:label="fragment_way"
-        tools:layout="@layout/fragment_way" />
+        tools:layout="@layout/fragment_way" >
+        <argument
+            android:name="selectedButton"
+            app:argType="string"
+            android:defaultValue="" />
+    </fragment>
 
 </navigation>

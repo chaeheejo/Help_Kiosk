@@ -49,42 +49,6 @@ public class HomeFragment extends Fragment {
         bt_way = view.findViewById(R.id.home_bt_way);
         bt_simulation = view.findViewById(R.id.home_bt_simulation);
 
-        bt_way.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                
-                switch (selectedButton){
-                    case "mcdonalds":
-                        NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_homeFragment_to_wayFragment);
-                        break;
-                    case "bugerking":
-                        break;
-                    case "cgv":
-                        break;
-                    case "gongcha":
-                        break;
-                }
-            }
-        });
-
-        bt_simulation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switch (selectedButton){
-                    case "mcdonalds":
-                        NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_homeFragment_to_simulationFragment);
-                        break;
-                    case "bugerking":
-                        break;
-                    case "cgv":
-                        break;
-                    case "gongcha":
-                        break;
-                }
-            }
-        });
-
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -101,6 +65,28 @@ public class HomeFragment extends Fragment {
                     case R.id.home_rbt_gongcha:
                         selectedButton = "gongcha";
                         break;
+                }
+            }
+        });
+
+        bt_way.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("selectedButton", selectedButton);
+                if(!selectedButton.isEmpty()){
+                    NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_homeFragment_to_wayFragment, bundle);
+                }
+            }
+        });
+
+        bt_simulation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("selectedButton", selectedButton);
+                if (!selectedButton.isEmpty()){
+                    NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_homeFragment_to_simulationFragment, bundle);
                 }
             }
         });
