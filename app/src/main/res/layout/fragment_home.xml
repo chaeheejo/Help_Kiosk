@@ -8,6 +8,7 @@
     tools:context=".HomeFragment">
 
     <RadioGroup
+        android:id="@+id/home_radio_group"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -18,7 +19,7 @@
 
 
         <RadioButton
-            android:id="@+id/home_bt_mcdonalds"
+            android:id="@+id/home_rbt_mcdonalds"
             android:layout_width="150dp"
             android:layout_height="70dp"
             android:layout_marginBottom="20dp"
@@ -30,7 +31,7 @@
             android:textAlignment="center" />
 
         <RadioButton
-            android:id="@+id/home_bt_bugerking"
+            android:id="@+id/home_rbt_bugerking"
             android:layout_width="150dp"
             android:layout_height="70dp"
             android:layout_marginBottom="20dp"
@@ -42,7 +43,7 @@
             android:text="버거킹" />
 
         <RadioButton
-            android:id="@+id/home_bt_cgv"
+            android:id="@+id/home_rbt_cgv"
             android:layout_width="150dp"
             android:layout_height="70dp"
             android:layout_marginBottom="20dp"
@@ -54,7 +55,7 @@
             android:text="CGV" />
 
         <RadioButton
-            android:id="@+id/home_bt_gongcha"
+            android:id="@+id/home_rbt_gongcha"
             android:layout_width="150dp"
             android:layout_height="70dp"
             android:layout_marginBottom="20dp"

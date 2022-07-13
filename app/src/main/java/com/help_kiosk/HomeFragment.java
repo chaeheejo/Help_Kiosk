@@ -11,22 +11,19 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioGroup;
 
 public class HomeFragment extends Fragment {
 
-    private Button bt_mcdonalds;
-    private Button bt_bugerking;
-    private Button bt_cgv;
-    private Button bt_gongcha;
     private Button bt_way;
     private Button bt_simulation;
-    String selectedButton ="";
+    private RadioGroup radioGroup;
+    private String selectedButton ="";
 
     public HomeFragment() {
 
     }
 
-    // TODO: Rename and change types and number of parameters
     public static HomeFragment newInstance(String param1, String param2) {
         HomeFragment fragment = new HomeFragment();
         Bundle args = new Bundle();
@@ -48,69 +45,63 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @NonNull Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
-        bt_mcdonalds = view.findViewById(R.id.home_bt_mcdonalds);
-        bt_bugerking = view.findViewById(R.id.home_bt_bugerking);
-        bt_cgv = view.findViewById(R.id.home_bt_cgv);
-        bt_gongcha =view.findViewById(R.id.home_bt_gongcha);
+        radioGroup = view.findViewById(R.id.home_radio_group);
         bt_way = view.findViewById(R.id.home_bt_way);
         bt_simulation = view.findViewById(R.id.home_bt_simulation);
-
-        bt_mcdonalds.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bt_mcdonalds.setSelected(!bt_mcdonalds.isSelected());
-
-                if(bt_mcdonalds.isSelected()){
-                    selectedButton = "mcdonals";
-                }
-                else{
-                    selectedButton = "";
-                }
-            }
-        });
-
-        bt_bugerking.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bt_mcdonalds.setSelected(!bt_mcdonalds.isSelected());
-
-                bt_mcdonalds.setSelected(!bt_mcdonalds.isSelected());
-
-                if(bt_mcdonalds.isSelected()){
-                    selectedButton = "mcdonals";
-                }
-                else{
-                    selectedButton = "";
-                }
-
-            }
-        });
-
-        bt_cgv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bt_mcdonalds.setSelected(!bt_mcdonalds.isSelected());
-            }
-        });
-
-        bt_gongcha.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bt_mcdonalds.setSelected(!bt_mcdonalds.isSelected());
-            }
-        });
 
         bt_way.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_homeFragment_to_wayFragment);
+
+                
+                switch (selectedButton){
+                    case "mcdonalds":
+                        NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_homeFragment_to_wayFragment);
+                        break;
+                    case "bugerking":
+                        break;
+                    case "cgv":
+                        break;
+                    case "gongcha":
+                        break;
+                }
             }
         });
 
         bt_simulation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_homeFragment_to_simulationFragment);
+                switch (selectedButton){
+                    case "mcdonalds":
+                        NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_homeFragment_to_simulationFragment);
+                        break;
+                    case "bugerking":
+                        break;
+                    case "cgv":
+                        break;
+                    case "gongcha":
+                        break;
+                }
+            }
+        });
+
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId){
+                    case R.id.home_rbt_mcdonalds:
+                        selectedButton = "mcdonalds";
+                        break;
+                    case R.id.home_rbt_bugerking:
+                        selectedButton = "bugerking";
+                        break;
+                    case R.id.home_rbt_cgv:
+                        selectedButton = "cgv";
+                        break;
+                    case R.id.home_rbt_gongcha:
+                        selectedButton = "gongcha";
+                        break;
+                }
             }
         });
     }

@@ -41,7 +41,7 @@
     </fragment>
     <fragment
         android:id="@+id/mcdonaldsFragment"
-        android:name="com.help_kiosk.McdonaldsWayFragment"
+        android:name="com.help_kiosk.WayFragment"
         android:label="fragment_mcdonalds"
         tools:layout="@layout/fragment_mcdonalds" />
     <fragment
