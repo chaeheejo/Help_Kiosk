@@ -18,7 +18,7 @@ import com.google.android.gms.tasks.Task;
 
 public class WayFragment extends Fragment {
     private WayViewModel wayViewModel;
-    private ImageView imageView2;
+    private ImageView imageView;
 
     private Task<Uri> pathReference;
 
@@ -49,7 +49,9 @@ public class WayFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @NonNull Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        imageView2 = view.findViewById(R.id.imageView2);
+        imageView = view.findViewById(R.id.imageView2);
+
+
 
         wayViewModel.getPhoto();
 
@@ -60,7 +62,7 @@ public class WayFragment extends Fragment {
                     pathReference=wayViewModel.getReference();
                     Glide.with(requireContext())
                             .load(pathReference.getResult())
-                            .into(imageView2);
+                            .into(imageView);
                 }
             }
         });
