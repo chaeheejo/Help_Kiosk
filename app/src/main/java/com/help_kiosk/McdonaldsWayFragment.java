@@ -14,21 +14,20 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.GlideBuilder;
 import com.google.android.gms.tasks.Task;
 
-public class McdonaldsFragment extends Fragment {
+public class McdonaldsWayFragment extends Fragment {
     private WayViewModel wayViewModel;
     private ImageView imageView2;
 
     private Task<Uri> pathReference;
 
-    public McdonaldsFragment() {
+    public McdonaldsWayFragment() {
         // Required empty public constructor
     }
 
-    public static McdonaldsFragment newInstance(String param1, String param2) {
-        McdonaldsFragment fragment = new McdonaldsFragment();
+    public static McdonaldsWayFragment newInstance(String param1, String param2) {
+        McdonaldsWayFragment fragment = new McdonaldsWayFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -53,13 +52,12 @@ public class McdonaldsFragment extends Fragment {
         imageView2 = view.findViewById(R.id.imageView2);
 
         wayViewModel.getPhoto();
-//        pathReference = wayViewModel.getUri();
 
         wayViewModel.uriLoaded().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean isLoaded) {
                 if(isLoaded){
-                    pathReference=wayViewModel.getUri();
+                    pathReference=wayViewModel.getReference();
                     Glide.with(requireContext())
                             .load(pathReference.getResult())
                             .into(imageView2);

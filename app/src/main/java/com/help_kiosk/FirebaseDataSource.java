@@ -28,19 +28,6 @@ public class FirebaseDataSource {
                         }
                     }
                 });
-//        storageRef.child("KakaoTalk_20220706_214041555.jpg").getDownloadUrl()
-//                .addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                    @Override
-//                    public void onSuccess(Uri uri) {
-//                        callback.onComplete(new Result.Success<StorageReference>(pathReference));
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//
-//                    }
-//                });
 
     }
 
