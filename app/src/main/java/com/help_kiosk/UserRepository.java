@@ -7,8 +7,8 @@ public class UserRepository {
     }
     private FirebaseDataSource firebaseDataSource;
 
-    public void getPhoto(UserRepositoryCallback<Result> callback){
-        firebaseDataSource.getPhoto(callback::onComplete);
+    public void getPathListReference(String selectedBtnName, UserRepositoryCallback<Result> callback){
+        firebaseDataSource.getPathListReference(selectedBtnName, callback::onComplete);
     }
 
     public void setDataSource(FirebaseDataSource ds){this.firebaseDataSource = ds;}
