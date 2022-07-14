@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -20,6 +21,8 @@ public class WayFragment extends Fragment {
     private WayViewModel wayViewModel;
     private ImageView imageView;
     private String selectedBtnName ;
+    private Button bt_left;
+    private Button bt_right;
 
     private Task<Uri> pathReference;
 
