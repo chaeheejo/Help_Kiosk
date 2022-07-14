@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +16,14 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.Task;
 
+import java.util.List;
+
 public class WayFragment extends Fragment {
     private WayViewModel wayViewModel;
     private ImageView imageView;
     private String selectedBtnName ;
 
-    private Task<Uri> pathReference;
+    private List<Task<Uri>> pathListReference;
 
     public WayFragment() {
     }
@@ -53,13 +54,14 @@ public class WayFragment extends Fragment {
         imageView = view.findViewById(R.id.way_img);
         selectedBtnName = WayFragmentArgs.fromBundle(getArguments()).getSelectedBtnName().toString();
 
-        wayViewModel.getPhoto();
+        wayViewModel.getPhoto(selectedBtnName);
 
         wayViewModel.isUriLoaded().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean isLoaded) {
                 if(isLoaded){
-                    pathReference=wayViewModel.getReference();
+                    pathListReference=wayViewModel.getListReference();
+
                     Glide.with(requireContext())
                             .load(pathReference.getResult())
                             .into(imageView);

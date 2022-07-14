@@ -88,7 +88,8 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (!selectedBtnName.isEmpty()){
-                    NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_homeFragment_to_simulationFragment);
+                    HomeFragmentDirections.ActionHomeFragmentToWayFragment action = HomeFragmentDirections.actionHomeFragmentToWayFragment(selectedBtnName);
+                    Navigation.findNavController(v).navigate(action);
                 }else{
                     Toast.makeText(getActivity().getApplicationContext(), "상점을 먼저 선택해주세요.", Toast.LENGTH_SHORT).show();
                 }

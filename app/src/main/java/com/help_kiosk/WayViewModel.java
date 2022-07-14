@@ -1,6 +1,5 @@
 package com.help_kiosk;
 
-import android.app.Activity;
 import android.net.Uri;
 
 import androidx.annotation.NonNull;
@@ -9,100 +8,155 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.storage.StorageReference;
 
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.Executor;
+import java.util.ListIterator;
 
 
 public class WayViewModel extends ViewModel {
     private UserRepository userRepository = UserRepository.getInstance();
     private MutableLiveData<Boolean> uriLoaded = new MutableLiveData<>(false);
 
-    private Task<Uri> pathReference= new Task<Uri>() {
+    private List<Task<Uri>> pathListReference = new List<Task<Uri>>() {
+
         @Override
-        public boolean isComplete() {
+        public int size() {
+            return 0;
+        }
+
+        @Override
+        public boolean isEmpty() {
             return false;
         }
 
         @Override
-        public boolean isSuccessful() {
+        public boolean contains(@Nullable Object o) {
+            return false;
+        }
+
+        @NonNull
+        @Override
+        public Iterator<Task<Uri>> iterator() {
+            return null;
+        }
+
+        @NonNull
+        @Override
+        public Object[] toArray() {
+            return new Object[0];
+        }
+
+        @NonNull
+        @Override
+        public <T> T[] toArray(@NonNull T[] a) {
+            return null;
+        }
+
+        @Override
+        public boolean add(Task<Uri> uriTask) {
             return false;
         }
 
         @Override
-        public boolean isCanceled() {
+        public boolean remove(@Nullable Object o) {
             return false;
         }
 
-        @Nullable
         @Override
-        public Uri getResult() {
+        public boolean containsAll(@NonNull Collection<?> c) {
+            return false;
+        }
+
+        @Override
+        public boolean addAll(@NonNull Collection<? extends Task<Uri>> c) {
+            return false;
+        }
+
+        @Override
+        public boolean addAll(int index, @NonNull Collection<? extends Task<Uri>> c) {
+            return false;
+        }
+
+        @Override
+        public boolean removeAll(@NonNull Collection<?> c) {
+            return false;
+        }
+
+        @Override
+        public boolean retainAll(@NonNull Collection<?> c) {
+            return false;
+        }
+
+        @Override
+        public void clear() {
+
+        }
+
+        @Override
+        public Task<Uri> get(int index) {
             return null;
         }
 
-        @Nullable
         @Override
-        public <X extends Throwable> Uri getResult(@NonNull Class<X> aClass) throws X {
+        public Task<Uri> set(int index, Task<Uri> element) {
             return null;
         }
 
-        @Nullable
         @Override
-        public Exception getException() {
+        public void add(int index, Task<Uri> element) {
+
+        }
+
+        @Override
+        public Task<Uri> remove(int index) {
+            return null;
+        }
+
+        @Override
+        public int indexOf(@Nullable Object o) {
+            return 0;
+        }
+
+        @Override
+        public int lastIndexOf(@Nullable Object o) {
+            return 0;
+        }
+
+        @NonNull
+        @Override
+        public ListIterator<Task<Uri>> listIterator() {
             return null;
         }
 
         @NonNull
         @Override
-        public Task<Uri> addOnSuccessListener(@NonNull OnSuccessListener<? super Uri> onSuccessListener) {
+        public ListIterator<Task<Uri>> listIterator(int index) {
             return null;
         }
 
         @NonNull
         @Override
-        public Task<Uri> addOnSuccessListener(@NonNull Executor executor, @NonNull OnSuccessListener<? super Uri> onSuccessListener) {
-            return null;
-        }
-
-        @NonNull
-        @Override
-        public Task<Uri> addOnSuccessListener(@NonNull Activity activity, @NonNull OnSuccessListener<? super Uri> onSuccessListener) {
-            return null;
-        }
-
-        @NonNull
-        @Override
-        public Task<Uri> addOnFailureListener(@NonNull OnFailureListener onFailureListener) {
-            return null;
-        }
-
-        @NonNull
-        @Override
-        public Task<Uri> addOnFailureListener(@NonNull Executor executor, @NonNull OnFailureListener onFailureListener) {
-            return null;
-        }
-
-        @NonNull
-        @Override
-        public Task<Uri> addOnFailureListener(@NonNull Activity activity, @NonNull OnFailureListener onFailureListener) {
+        public List<Task<Uri>> subList(int fromIndex, int toIndex) {
             return null;
         }
     };
 
-    public void getPhoto(){
-        userRepository.getPhoto(result -> {
+    public void getPhoto(String selectedBtnName){
+        userRepository.getPhoto(selectedBtnName,result -> {
             if(result instanceof Result.Success){
-                pathReference = ((Result.Success<Task<Uri>>)result).getData();
+                pathListReference = ((Result.Success<List<Task<Uri>>>)result).getData();
                 uriLoaded.setValue(true);
             }
         });
     }
 
-    public Task<Uri> getReference(){return pathReference;}
+    public Task<Uri> getPathReference(){
+        //List인 reference를 pageNo에 따라 하나씩 반환
+        return pathListReference;
+    }
 
     public LiveData<Boolean> isUriLoaded(){return uriLoaded;}
 
