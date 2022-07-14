@@ -21,7 +21,7 @@ public class WayFragment extends Fragment {
     private ImageView imageView;
     private String selectedBtnName ;
 
-    private Task<Uri> pathListReference;
+    private Task<Uri> pathReference;
 
     public WayFragment() {
     }
@@ -58,10 +58,10 @@ public class WayFragment extends Fragment {
             @Override
             public void onChanged(Boolean isLoaded) {
                 if(isLoaded){
-                    pathListReference = wayViewModel.getPathReference();
+                    pathReference = wayViewModel.getPathReference();
 
                     Glide.with(requireContext())
-                            .load(pathListReference.getResult())
+                            .load(pathReference.getResult())
                             .into(imageView);
                 }
             }
