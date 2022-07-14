@@ -24,9 +24,9 @@
             android:layout_height="70dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/selector_radio_button"
-            android:backgroundTint="#AFB2C6"
             android:button="@null"
             android:text="맥도날드"
+            android:textSize="20dp"
             android:textColor="@drawable/selector_radio_text"
             android:textAlignment="center" />
 
@@ -35,9 +35,9 @@
             android:layout_width="150dp"
             android:layout_height="70dp"
             android:layout_marginBottom="20dp"
-            android:backgroundTint="#AFB2C6"
             android:background="@drawable/selector_radio_button"
             android:textColor="@drawable/selector_radio_text"
+            android:textSize="20dp"
             android:textAlignment="center"
             android:button="@null"
             android:text="버거킹" />
@@ -47,9 +47,9 @@
             android:layout_width="150dp"
             android:layout_height="70dp"
             android:layout_marginBottom="20dp"
-            android:backgroundTint="#AFB2C6"
             android:background="@drawable/selector_radio_button"
             android:textColor="@drawable/selector_radio_text"
+            android:textSize="20dp"
             android:textAlignment="center"
             android:button="@null"
             android:text="CGV" />
@@ -59,9 +59,9 @@
             android:layout_width="150dp"
             android:layout_height="70dp"
             android:layout_marginBottom="20dp"
-            android:backgroundTint="#AFB2C6"
             android:background="@drawable/selector_radio_button"
             android:textColor="@drawable/selector_radio_text"
+            android:textSize="20dp"
             android:textAlignment="center"
             android:button="@null"
             android:text="공차" />
@@ -77,12 +77,13 @@
         android:backgroundTint="#6A76CD"
         android:text="사용법"
         android:textAlignment="center"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/home_bt_simulation"
-        android:layout_width="100dp"
+        android:layout_width="110dp"
         android:layout_height="70dp"
         android:layout_marginEnd="76dp"
         android:layout_marginBottom="68dp"
@@ -90,6 +91,7 @@
         android:button="@null"
         android:text="모의 사용"
         android:textAlignment="center"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

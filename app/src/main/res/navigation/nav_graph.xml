@@ -39,9 +39,8 @@
         android:label="fragment_way"
         tools:layout="@layout/fragment_way" >
         <argument
-            android:name="selectedButton"
-            app:argType="string"
-            android:defaultValue="" />
+            android:name="selectedBtnName"
+            app:argType="string" />
     </fragment>
 
 </navigation>

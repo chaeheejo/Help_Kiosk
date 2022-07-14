@@ -17,7 +17,9 @@ public class FirebaseDataSource {
     private StorageReference storageRef = storage.getReference();
 
     public void getPhoto(DataSourceCallback<Result> callback){
-        StorageReference pathReference = storageRef.child("KakaoTalk_20220706_214041555.jpg");
+
+
+        StorageReference pathReference = storageRef.child("mcdonalds/1.jpg");
 
         pathReference.getDownloadUrl()
                 .addOnCompleteListener(new OnCompleteListener<Uri>() {

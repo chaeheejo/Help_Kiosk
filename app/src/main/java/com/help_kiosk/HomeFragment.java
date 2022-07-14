@@ -4,21 +4,22 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 public class HomeFragment extends Fragment {
 
     private Button bt_way;
     private Button bt_simulation;
     private RadioGroup radioGroup;
-    private String selectedButton ="";
+    private String selectedBtnName;
 
     public HomeFragment() {
 
@@ -48,22 +49,23 @@ public class HomeFragment extends Fragment {
         radioGroup = view.findViewById(R.id.home_radio_group);
         bt_way = view.findViewById(R.id.home_bt_way);
         bt_simulation = view.findViewById(R.id.home_bt_simulation);
+        selectedBtnName ="";
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch(checkedId){
                     case R.id.home_rbt_mcdonalds:
-                        selectedButton = "mcdonalds";
+                        selectedBtnName = "mcdonalds";
                         break;
                     case R.id.home_rbt_bugerking:
-                        selectedButton = "bugerking";
+                        selectedBtnName = "bugerking";
                         break;
                     case R.id.home_rbt_cgv:
-                        selectedButton = "cgv";
+                        selectedBtnName = "cgv";
                         break;
                     case R.id.home_rbt_gongcha:
-                        selectedButton = "gongcha";
+                        selectedBtnName = "gongcha";
                         break;
                 }
             }
@@ -72,10 +74,12 @@ public class HomeFragment extends Fragment {
         bt_way.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putString("selectedButton", selectedButton);
-                if(!selectedButton.isEmpty()){
-                    NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_homeFragment_to_wayFragment, bundle);
+                if(!selectedBtnName.isEmpty()){
+                    HomeFragmentDirections.ActionHomeFragmentToWayFragment action = HomeFragmentDirections.actionHomeFragmentToWayFragment(selectedBtnName);
+                    Navigation.findNavController(v).navigate(action);
+                }
+                else{
+                    Toast.makeText(getActivity().getApplicationContext(), "상점을 먼저 선택해주세요.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -83,12 +87,15 @@ public class HomeFragment extends Fragment {
         bt_simulation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putString("selectedButton", selectedButton);
-                if (!selectedButton.isEmpty()){
-                    NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_homeFragment_to_simulationFragment, bundle);
+                if (!selectedBtnName.isEmpty()){
+                    NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_homeFragment_to_simulationFragment);
+                }else{
+                    Toast.makeText(getActivity().getApplicationContext(), "상점을 먼저 선택해주세요.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+
     }
+
 }
