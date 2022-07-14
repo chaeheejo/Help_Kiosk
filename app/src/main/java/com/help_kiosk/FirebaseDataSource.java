@@ -18,7 +18,7 @@ public class FirebaseDataSource {
     private FirebaseStorage storage = FirebaseStorage.getInstance();
     private StorageReference storageRef = storage.getReference();
 
-    public void getPhoto(String selectedPathName, DataSourceCallback<Result> callback){
+    public void getPathListReference(String selectedPathName, DataSourceCallback<Result> callback){
         List<Task<Uri>> toReturn = new LinkedList<>();
 
         StorageReference listReference = storageRef.child(selectedPathName);
@@ -29,20 +29,9 @@ public class FirebaseDataSource {
                     Task<Uri> tmpUri = item.getDownloadUrl();
                     toReturn.add(tmpUri);
                 }
+                callback.onComplete(new Result.Success<List<Task<Uri>>>(toReturn));
             }
         });
-
-
-
-        pathReference.getDownloadUrl()
-                .addOnCompleteListener(new OnCompleteListener<Uri>() {
-                    @Override
-                    public void onComplete(@NonNull List<Task<Uri>> task) {
-                        if(task.isSuccessful()){
-                            callback.onComplete(new Result.Success<List<Task<Uri>>(toReturn));
-                        }
-                    }
-                });
 
     }
 

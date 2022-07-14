@@ -16,14 +16,12 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.Task;
 
-import java.util.List;
-
 public class WayFragment extends Fragment {
     private WayViewModel wayViewModel;
     private ImageView imageView;
     private String selectedBtnName ;
 
-    private List<Task<Uri>> pathListReference;
+    private Task<Uri> pathListReference;
 
     public WayFragment() {
     }
@@ -54,16 +52,16 @@ public class WayFragment extends Fragment {
         imageView = view.findViewById(R.id.way_img);
         selectedBtnName = WayFragmentArgs.fromBundle(getArguments()).getSelectedBtnName().toString();
 
-        wayViewModel.getPhoto(selectedBtnName);
+        wayViewModel.getPathListReference(selectedBtnName);
 
         wayViewModel.isUriLoaded().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean isLoaded) {
                 if(isLoaded){
-                    pathListReference=wayViewModel.getListReference();
+                    pathListReference = wayViewModel.getPathReference();
 
                     Glide.with(requireContext())
-                            .load(pathReference.getResult())
+                            .load(pathListReference.getResult())
                             .into(imageView);
                 }
             }

@@ -144,8 +144,8 @@ public class WayViewModel extends ViewModel {
         }
     };
 
-    public void getPhoto(String selectedBtnName){
-        userRepository.getPhoto(selectedBtnName,result -> {
+    public void getPathListReference(String selectedBtnName){
+        userRepository.getPathListReference(selectedBtnName,result -> {
             if(result instanceof Result.Success){
                 pathListReference = ((Result.Success<List<Task<Uri>>>)result).getData();
                 uriLoaded.setValue(true);
@@ -154,6 +154,8 @@ public class WayViewModel extends ViewModel {
     }
 
     public Task<Uri> getPathReference(){
+
+
         //List인 reference를 pageNo에 따라 하나씩 반환
         return pathListReference;
     }
