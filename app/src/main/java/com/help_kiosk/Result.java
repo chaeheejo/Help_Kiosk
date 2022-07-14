@@ -1,6 +1,7 @@
 package com.help_kiosk;
 
 public class Result {
+
     private Result() {
     }
 

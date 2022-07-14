@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +20,11 @@ import com.google.android.gms.tasks.Task;
 public class WayFragment extends Fragment {
     private WayViewModel wayViewModel;
     private ImageView imageView;
+    private String selectedBtnName ;
 
     private Task<Uri> pathReference;
 
     public WayFragment() {
-        // Required empty public constructor
     }
 
     public static WayFragment newInstance(String param1, String param2) {
@@ -44,18 +45,17 @@ public class WayFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mcdonalds, container, false);
+        return inflater.inflate(R.layout.fragment_way, container, false);
     }
     @Override
     public void onViewCreated(@NonNull View view, @NonNull Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        imageView = view.findViewById(R.id.imageView2);
-
-
+        imageView = view.findViewById(R.id.way_img);
+        selectedBtnName = WayFragmentArgs.fromBundle(getArguments()).getSelectedBtnName().toString();
 
         wayViewModel.getPhoto();
 
-        wayViewModel.uriLoaded().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+        wayViewModel.isUriLoaded().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean isLoaded) {
                 if(isLoaded){

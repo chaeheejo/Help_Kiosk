@@ -104,6 +104,6 @@ public class WayViewModel extends ViewModel {
 
     public Task<Uri> getReference(){return pathReference;}
 
-    public LiveData<Boolean> uriLoaded(){return uriLoaded;}
+    public LiveData<Boolean> isUriLoaded(){return uriLoaded;}
 
 }
