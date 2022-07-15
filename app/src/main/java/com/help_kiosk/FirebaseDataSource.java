@@ -1,10 +1,14 @@
 package com.help_kiosk;
 
 import android.net.Uri;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FirebaseStorage;
@@ -18,21 +22,21 @@ public class FirebaseDataSource {
     private FirebaseStorage storage = FirebaseStorage.getInstance();
     private StorageReference storageRef = storage.getReference();
 
-    public void getPathListReference(String selectedPathName, DataSourceCallback<Result> callback){
-        List<Task<Uri>> toReturn = new LinkedList<>();
+    public void getUriList(String selectedBtnName, DataSourceCallback<Result> callback){
+        StorageReference listRef = storageRef.child(selectedBtnName);
 
-        StorageReference listReference = storageRef.child(selectedPathName);
-        listReference.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
-            @Override
-            public void onSuccess(ListResult listResult) {
-                for(StorageReference item : listResult.getItems()){
-                    Task<Uri> tmpUri = item.getDownloadUrl();
-                    toReturn.add(tmpUri);
+        listRef.listAll()
+            .addOnSuccessListener(new OnSuccessListener<ListResult>() {
+                @Override
+                public void onSuccess(ListResult listResult) {
+                    callback.onComplete(new Result.Success<ListResult>(listResult));
                 }
-                callback.onComplete(new Result.Success<List<Task<Uri>>>(toReturn));
-            }
-        });
-
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.e("firebase", e.getMessage());
+                }
+            });
     }
 
     public interface DataSourceCallback<Result>{

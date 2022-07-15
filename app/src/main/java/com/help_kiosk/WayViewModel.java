@@ -1,165 +1,120 @@
 package com.help_kiosk;
 
+import android.app.Activity;
 import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.storage.ListResult;
+import com.google.firebase.storage.StorageReference;
 
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
+import java.util.concurrent.Executor;
 
 
 public class WayViewModel extends ViewModel {
     private UserRepository userRepository = UserRepository.getInstance();
     private MutableLiveData<Boolean> uriLoaded = new MutableLiveData<>(false);
+    private int size;
+    private ListResult pathListUri;
 
-    private List<Task<Uri>> pathListReference = new List<Task<Uri>>() {
-
+    private Task<Uri> pathUri = new Task<Uri>() {
         @Override
-        public int size() {
-            return 0;
-        }
-
-        @Override
-        public boolean isEmpty() {
+        public boolean isComplete() {
             return false;
         }
 
         @Override
-        public boolean contains(@Nullable Object o) {
+        public boolean isSuccessful() {
             return false;
         }
 
-        @NonNull
         @Override
-        public Iterator<Task<Uri>> iterator() {
+        public boolean isCanceled() {
+            return false;
+        }
+
+        @Nullable
+        @Override
+        public Uri getResult() {
+            return null;
+        }
+
+        @Nullable
+        @Override
+        public <X extends Throwable> Uri getResult(@NonNull Class<X> aClass) throws X {
+            return null;
+        }
+
+        @Nullable
+        @Override
+        public Exception getException() {
             return null;
         }
 
         @NonNull
         @Override
-        public Object[] toArray() {
-            return new Object[0];
-        }
-
-        @NonNull
-        @Override
-        public <T> T[] toArray(@NonNull T[] a) {
-            return null;
-        }
-
-        @Override
-        public boolean add(Task<Uri> uriTask) {
-            return false;
-        }
-
-        @Override
-        public boolean remove(@Nullable Object o) {
-            return false;
-        }
-
-        @Override
-        public boolean containsAll(@NonNull Collection<?> c) {
-            return false;
-        }
-
-        @Override
-        public boolean addAll(@NonNull Collection<? extends Task<Uri>> c) {
-            return false;
-        }
-
-        @Override
-        public boolean addAll(int index, @NonNull Collection<? extends Task<Uri>> c) {
-            return false;
-        }
-
-        @Override
-        public boolean removeAll(@NonNull Collection<?> c) {
-            return false;
-        }
-
-        @Override
-        public boolean retainAll(@NonNull Collection<?> c) {
-            return false;
-        }
-
-        @Override
-        public void clear() {
-
-        }
-
-        @Override
-        public Task<Uri> get(int index) {
-            return null;
-        }
-
-        @Override
-        public Task<Uri> set(int index, Task<Uri> element) {
-            return null;
-        }
-
-        @Override
-        public void add(int index, Task<Uri> element) {
-
-        }
-
-        @Override
-        public Task<Uri> remove(int index) {
-            return null;
-        }
-
-        @Override
-        public int indexOf(@Nullable Object o) {
-            return 0;
-        }
-
-        @Override
-        public int lastIndexOf(@Nullable Object o) {
-            return 0;
-        }
-
-        @NonNull
-        @Override
-        public ListIterator<Task<Uri>> listIterator() {
+        public Task<Uri> addOnSuccessListener(@NonNull OnSuccessListener<? super Uri> onSuccessListener) {
             return null;
         }
 
         @NonNull
         @Override
-        public ListIterator<Task<Uri>> listIterator(int index) {
+        public Task<Uri> addOnSuccessListener(@NonNull Executor executor, @NonNull OnSuccessListener<? super Uri> onSuccessListener) {
             return null;
         }
 
         @NonNull
         @Override
-        public List<Task<Uri>> subList(int fromIndex, int toIndex) {
+        public Task<Uri> addOnSuccessListener(@NonNull Activity activity, @NonNull OnSuccessListener<? super Uri> onSuccessListener) {
+            return null;
+        }
+
+        @NonNull
+        @Override
+        public Task<Uri> addOnFailureListener(@NonNull OnFailureListener onFailureListener) {
+            return null;
+        }
+
+        @NonNull
+        @Override
+        public Task<Uri> addOnFailureListener(@NonNull Executor executor, @NonNull OnFailureListener onFailureListener) {
+            return null;
+        }
+
+        @NonNull
+        @Override
+        public Task<Uri> addOnFailureListener(@NonNull Activity activity, @NonNull OnFailureListener onFailureListener) {
             return null;
         }
     };
 
-    public void getPathListReference(String selectedBtnName){
-        userRepository.getPathListReference(selectedBtnName,result -> {
+    public void getUriList(String path){
+        userRepository.getUriList(path, result -> {
             if(result instanceof Result.Success){
-                pathListReference = ((Result.Success<List<Task<Uri>>>)result).getData();
+                pathListUri = ((Result.Success<ListResult>)result).getData();
+                size = pathListUri.getItems().size();
                 uriLoaded.setValue(true);
             }
         });
     }
 
-    public Task<Uri> getPathReference(){
+    public Task<Uri> getUri(String selectedBtnName, int count){
+        StorageReference storageRef = pathListUri.getItems().get(count-1);
+        pathUri = storageRef.getDownloadUrl();
 
-
-        //List인 reference를 pageNo에 따라 하나씩 반환
-        return pathListReference;
+        return pathUri;
     }
 
     public LiveData<Boolean> isUriLoaded(){return uriLoaded;}
+    public int getSize(){return size;}
 
 }
