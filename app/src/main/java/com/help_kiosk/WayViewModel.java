@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Executor;
 
@@ -102,7 +103,6 @@ public class WayViewModel extends ViewModel {
 
 
     public void getUriList(String path){
-        uriListLoaded.setValue(false);
         userRepository.getUriList(path, result -> {
             if(result instanceof Result.Success){
                 pathListUri = ((Result.Success<ListResult>)result).getData();
@@ -113,7 +113,6 @@ public class WayViewModel extends ViewModel {
     }
 
     public void getDownloadUri(int count){
-        uriLoaded.setValue(false);
         Log.d("way", "start getdownloadurl "+pathListUri.toString());
         StorageReference storageRef = pathListUri.getItems().get(count-1);
 
