@@ -16,7 +16,8 @@
         <entry key="app/src/main/res/layout/fragment_gongcha.xml" value="0.29791666666666666" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.30932971014492755" />
         <entry key="app/src/main/res/layout/fragment_mcdonalds.xml" value="0.3880208333333333" />
-        <entry key="app/src/main/res/layout/fragment_way.xml" value="0.32760416666666664" />
+        <entry key="app/src/main/res/layout/fragment_simulation.xml" value="0.31197916666666664" />
+        <entry key="app/src/main/res/layout/fragment_way.xml" value="0.23449554443359366" />
       </map>
     </option>
   </component>

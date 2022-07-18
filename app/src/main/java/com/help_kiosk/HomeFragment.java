@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,6 +80,7 @@ public class HomeFragment extends Fragment {
                     Navigation.findNavController(v).navigate(action);
                 }
                 else{
+                    Log.d("home", "click ");
                     Toast.makeText(getActivity().getApplicationContext(), "상점을 먼저 선택해주세요.", Toast.LENGTH_SHORT).show();
                 }
             }
