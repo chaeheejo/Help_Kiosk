@@ -114,6 +114,7 @@ public class WayViewModel extends ViewModel {
 
     public void getDownloadUri(int count){
         uriLoaded.setValue(false);
+        Log.d("way", "start getdownloadurl "+pathListUri.toString());
         StorageReference storageRef = pathListUri.getItems().get(count-1);
 
         storageRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {

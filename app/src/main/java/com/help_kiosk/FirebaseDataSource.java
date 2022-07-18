@@ -15,6 +15,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -29,6 +30,7 @@ public class FirebaseDataSource {
             .addOnSuccessListener(new OnSuccessListener<ListResult>() {
                 @Override
                 public void onSuccess(ListResult listResult) {
+                    sortUriList(listResult);
                     callback.onComplete(new Result.Success<ListResult>(listResult));
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -37,6 +39,16 @@ public class FirebaseDataSource {
                     Log.e("firebase", e.getMessage());
                 }
             });
+    }
+
+    public void sortUriList(ListResult listResult){
+        ListResult newListResult;
+        for (StorageReference item : listResult.getItems()){
+            String[] itemPath = item.getName().split("[.]");
+            Log.d("fire", "sortUri item0: "+itemPath[0]);
+            String path = itemPath[0];
+            Log.d("fire", "sortUriList: "+listResult.getItems().size());
+        }
     }
 
     public interface DataSourceCallback<Result>{
