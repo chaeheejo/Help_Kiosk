@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -17,6 +19,7 @@ import android.widget.Toast;
 
 public class HomeFragment extends Fragment {
 
+    private WayViewModel wayViewModel;
     private Button bt_way;
     private Button bt_simulation;
     private RadioGroup radioGroup;
@@ -36,6 +39,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        wayViewModel = new ViewModelProvider(this).get(WayViewModel.class);
     }
 
     @Override
@@ -72,12 +76,17 @@ public class HomeFragment extends Fragment {
             }
         });
 
+
+
         bt_way.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!selectedBtnName.isEmpty()){
+
                     HomeFragmentDirections.ActionHomeFragmentToWayFragment action = HomeFragmentDirections.actionHomeFragmentToWayFragment(selectedBtnName);
                     Navigation.findNavController(v).navigate(action);
+
+
                 }
                 else{
                     Log.d("home", "click ");

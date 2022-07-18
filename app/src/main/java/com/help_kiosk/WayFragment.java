@@ -22,7 +22,7 @@ import com.google.android.gms.tasks.Task;
 public class WayFragment extends Fragment {
     private WayViewModel wayViewModel;
     private ImageView imageView;
-    private String selectedBtnName ;
+    private String selectedBtnName;
     private ImageButton bt_left;
     private ImageButton bt_right;
     private int count;
@@ -50,25 +50,26 @@ public class WayFragment extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_way, container, false);
     }
+
     @Override
     public void onViewCreated(@NonNull View view, @NonNull Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        imageView = view.findViewById(R.id.way_img);
         bt_left = view.findViewById(R.id.way_btn_left);
         bt_right = view.findViewById(R.id.way_btn_right);
         selectedBtnName = WayFragmentArgs.fromBundle(getArguments()).getSelectedBtnName().toString();
-        count=1;
+        count = 1;
 
-        getPhoto(view, count);
+        wayViewModel.getUriList(selectedBtnName);
 
         bt_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (count-1>1){
-                    Log.d("left btn", "onClick if getPhoto"+count);
-                    getPhoto(view, count);
-                }
-                else{
-                    Log.d("left btn", "onClick else getPhoto"+count);
+                if (count - 1 > 1) {
+                    Log.d("left btn", "onClick if getPhoto" + count);
+                    getPhoto(count);
+                } else {
+                    Log.d("left btn", "onClick else getPhoto" + count);
                     Toast.makeText(getActivity().getApplicationContext(), "첫 화면입니다.", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -77,39 +78,25 @@ public class WayFragment extends Fragment {
         bt_right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (count-1<wayViewModel.getSize()){
-                    Log.d("right btn", "onClick if getPhoto"+count);
-                    getPhoto(view, count);
-                }
-                else{
-                    Log.d("right btn", "onClick if getPhoto"+count);
+                if (count - 1 < wayViewModel.getSize()) {
+                    Log.d("right btn", "onClick if getPhoto" + count);
+                    getPhoto(count);
+                    count++;
+                } else {
+                    Log.d("right btn", "onClick if getPhoto" + count);
                     Toast.makeText(getActivity().getApplicationContext(), "마지막 화면입니다.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-    }
 
-    public void getPhoto(View view, int count){
-        if (count==1){
-            wayViewModel.getUriList(selectedBtnName);
-
-            wayViewModel.isUriListLoaded().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
-                @Override
-                public void onChanged(Boolean isLoaded) {
-                    if(isLoaded){
-                        loadPhoto(view, count);
-                    }
+        wayViewModel.isUriListLoaded().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean isLoaded) {
+                if (isLoaded) {
+                    wayViewModel.getDownloadUri(count);
                 }
-            });
-        }
-        else{
-            loadPhoto(view, count);
-        }
-    }
-
-    public void loadPhoto(View view, int count){
-        imageView = view.findViewById(R.id.way_img);
-        wayViewModel.getDownloadUri(count);
+            }
+        });
 
         wayViewModel.isUriLoaded().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
@@ -122,4 +109,14 @@ public class WayFragment extends Fragment {
             }
         });
     }
+
+
+    public void getPhoto(int count) {
+        if (count == 1) {
+
+        } else {
+            wayViewModel.getDownloadUri(count);
+        }
+    }
+
 }
