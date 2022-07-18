@@ -53,7 +53,6 @@ public class WayFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @NonNull Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        imageView = view.findViewById(R.id.way_img);
         bt_left = view.findViewById(R.id.way_btn_left);
         bt_right = view.findViewById(R.id.way_btn_right);
         selectedBtnName = WayFragmentArgs.fromBundle(getArguments()).getSelectedBtnName().toString();
@@ -89,18 +88,33 @@ public class WayFragment extends Fragment {
     public void getPhoto(View view, int count){
         if (count==1){
             wayViewModel.getUriList(selectedBtnName);
+
+            wayViewModel.isUriListLoaded().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+                @Override
+                public void onChanged(Boolean isLoaded) {
+                    if(isLoaded){
+                        loadPhoto(view, count);
+                    }
+                }
+            });
         }
+        else{
+            loadPhoto(view, count);
+        }
+    }
+
+    public void loadPhoto(View view, int count){
+        imageView = view.findViewById(R.id.way_img);
+        wayViewModel.getDownloadUri(count);
+
         wayViewModel.isUriLoaded().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
-            public void onChanged(Boolean isLoaded) {
-                if(isLoaded){
-                    Task<Uri> pathUri = wayViewModel.getUri(selectedBtnName, count);
-                    imageView = view.findViewById(R.id.way_img);
-                    Log.d("asdf", "onChanged: "+pathUri);
-                    Glide.with(requireContext())
-                            .load(pathUri)
-                            .into(imageView);
-                }
+            public void onChanged(Boolean aBoolean) {
+                Task<Uri> pathUri = wayViewModel.getUri();
+
+                Glide.with(requireContext())
+                        .load(pathUri.getResult())
+                        .into(imageView);
             }
         });
     }
