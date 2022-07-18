@@ -66,8 +66,9 @@ public class WayFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (count - 1 > 1) {
+                    count--;
                     Log.d("left btn", "onClick if getPhoto" + count);
-                    getPhoto(count);
+                    wayViewModel.getDownloadUri(count);
                 } else {
                     Log.d("left btn", "onClick else getPhoto" + count);
                     Toast.makeText(getActivity().getApplicationContext(), "첫 화면입니다.", Toast.LENGTH_SHORT).show();
@@ -79,9 +80,9 @@ public class WayFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (count - 1 < wayViewModel.getSize()) {
-                    Log.d("right btn", "onClick if getPhoto" + count);
-                    getPhoto(count);
                     count++;
+                    Log.d("right btn", "onClick if getPhoto" + count);
+                    wayViewModel.getDownloadUri(count);
                 } else {
                     Log.d("right btn", "onClick if getPhoto" + count);
                     Toast.makeText(getActivity().getApplicationContext(), "마지막 화면입니다.", Toast.LENGTH_SHORT).show();
@@ -108,15 +109,6 @@ public class WayFragment extends Fragment {
                         .into(imageView);
             }
         });
-    }
-
-
-    public void getPhoto(int count) {
-        if (count == 1) {
-
-        } else {
-            wayViewModel.getDownloadUri(count);
-        }
     }
 
 }

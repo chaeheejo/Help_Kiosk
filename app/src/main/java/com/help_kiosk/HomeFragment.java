@@ -82,11 +82,8 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(!selectedBtnName.isEmpty()){
-
                     HomeFragmentDirections.ActionHomeFragmentToWayFragment action = HomeFragmentDirections.actionHomeFragmentToWayFragment(selectedBtnName);
                     Navigation.findNavController(v).navigate(action);
-
-
                 }
                 else{
                     Log.d("home", "click ");
