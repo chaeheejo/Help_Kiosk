@@ -77,7 +77,6 @@ public class HomeFragment extends Fragment {
         });
 
 
-
         bt_way.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,7 +85,6 @@ public class HomeFragment extends Fragment {
                     Navigation.findNavController(v).navigate(action);
                 }
                 else{
-                    Log.d("home", "click ");
                     Toast.makeText(getActivity().getApplicationContext(), "상점을 먼저 선택해주세요.", Toast.LENGTH_SHORT).show();
                 }
             }

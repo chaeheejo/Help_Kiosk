@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -18,14 +17,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.concurrent.Executor;
 
-
-public class WayViewModel extends ViewModel {
+public class SimulationViewModel extends ViewModel {
     private UserRepository userRepository = UserRepository.getInstance();
-    private MutableLiveData<Boolean> uriListLoaded = new MutableLiveData<>(false);
     private MutableLiveData<Boolean> uriLoaded = new MutableLiveData<>(false);
     private int size;
     private ListResult pathListUri;
@@ -101,37 +96,19 @@ public class WayViewModel extends ViewModel {
         }
     };
 
-
-    public void getUriList(String selectedBtnName){
-        userRepository.getUriList(selectedBtnName, result -> {
-            if(result instanceof Result.Success){
-                pathListUri = ((Result.Success<ListResult>)result).getData();
-                size = pathListUri.getItems().size();
-                uriListLoaded.setValue(true);
+    public void getDownloadUri(String path){
+        userRepository.getDownloadUri(path, result -> {
+            if (result instanceof Result.Success){
+                pathUri = ((Result.Success<Task>)result).getData();
+                uriLoaded.setValue(true);
             }
-        });
-    }
-
-    public void getDownloadUri(int count){
-        StorageReference storageRef = pathListUri.getItems().get(count-1);
-
-        storageRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-            @Override
-            public void onComplete(@NonNull Task<Uri> task) {
-                if (task.isSuccessful()){
-                    pathUri = task;
-                    uriLoaded.setValue(true);
-                }
-                else{
-                    Log.d("way", "failed getdownloadurl ");
-                }
+            else{
+                Log.d("simulation", "failed getdownloadurl ");
             }
         });
     }
 
     public LiveData<Boolean> isUriLoaded(){return uriLoaded;}
-    public LiveData<Boolean> isUriListLoaded(){return uriListLoaded;}
     public int getSize(){return size;}
     public Task<Uri> getUri(){return pathUri;}
-
 }
