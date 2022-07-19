@@ -7,11 +7,13 @@ public class UserRepository {
     }
     private FirebaseDataSource firebaseDataSource;
 
-    public void getUriList(String path, UserRepositoryCallback<Result> callback){
-        firebaseDataSource.getUriList(path, callback::onComplete);
+    public void getUriList(String selectedBtnName, UserRepositoryCallback<Result> callback){
+        firebaseDataSource.getUriList(selectedBtnName, callback::onComplete);
     }
 
-
+    public void getDownloadUri(String path, UserRepositoryCallback<Result> callback){
+        firebaseDataSource.getDownloadUri(path, callback::onComplete);
+    }
 
     public void setDataSource(FirebaseDataSource ds){this.firebaseDataSource = ds;}
     public interface UserRepositoryCallback<Result>{

@@ -32,7 +32,12 @@
         android:id="@+id/simulationFragment"
         android:name="com.help_kiosk.SimulationFragment"
         android:label="fragment_simulation"
-        tools:layout="@layout/fragment_simulation" />
+        tools:layout="@layout/fragment_simulation" >
+        <argument
+            android:name="selectedBtnName"
+            app:argType="string" />
+    </fragment>
+
     <fragment
         android:id="@+id/wayFragment"
         android:name="com.help_kiosk.WayFragment"

@@ -39,6 +39,16 @@ public class FirebaseDataSource {
                 });
     }
 
+    public void getDownloadUri(String path, DataSourceCallback<Result> callback){
+        storageRef.child(path).getDownloadUrl()
+            .addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    callback.onComplete(new Result.Success<Task>(task));
+                }
+            });
+    }
+
     public interface DataSourceCallback<Result>{
         void onComplete(Result result);
     }
