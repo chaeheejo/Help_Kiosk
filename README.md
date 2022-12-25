@@ -1,3 +1,4 @@
-# Help_Kiosk
+# help_kiosk
 
-android project
+### 프로젝트 개요
+키오스크의 보급 증가와 고령층 증가에 맞춰 키오스크의 학습을 도와주는 앱이다.
